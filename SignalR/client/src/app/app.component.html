@@ -1,0 +1,26 @@
+<div class="wrapper" *ngIf="usernameSet == false">
+  <div>
+    <div>
+      <h2>What is your name?</h2>
+      <input type="text" name="user" [(ngModel)]="user" placeholder="Name" required>
+      <button type="button" class="btn btn-primary" value="Save" (click)="setUsername()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="usernameSet == true">
+  <div *ngFor="let e of messages; let i = index" class="messageContainer {{user == e.user ? 'self' : '' }}">
+    <div class="user" *ngIf="i == 0 || messages[i-1].user != e.user">
+      {{e.user}}
+    </div>
+    <div class="message">
+      {{e.message}}
+    </div>
+  </div>
+  <div class="sendMessage">
+    <form>
+      <input type="text" name="message" [(ngModel)]="message" placeholder="message" required />
+      <input type="submit" class="btn btn-primary" value="Send" (click)="sendMessage()">
+    </form>
+  </div>
+</div>
